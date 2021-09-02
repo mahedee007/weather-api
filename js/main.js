@@ -14,16 +14,23 @@ const searchWeather = ()=>{
         .then(res => res.json())
         .then(data => showWeather(data))
     }
+   
     
 }
+const setInnerText = (id, text) => {
+    document.getElementById(id).innerText = text;
+}
+
+
 const showWeather = temperature => {
     if(temperature.name === undefined){
         alert('this is not a city name')
     }else{
         
-        document.getElementById('city-name').innerText = `${temperature.name}`;
-        document.getElementById('temp').innerText = `${temperature.main.temp}`;
-        document.getElementById('forcast').innerText = `${temperature.weather[0].main}`;
+        setInnerText('city-name',temperature.name);
+        setInnerText('temp',temperature.main.temp);
+        setInnerText('forcast',temperature.weather[0].main);
+        
         const url = `https://openweathermap.org/img/wn/${temperature.weather[0].icon}@2x.png`
         document.getElementById('img-icon').setAttribute('src', url);
         
